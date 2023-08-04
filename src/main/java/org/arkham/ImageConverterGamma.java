@@ -3,6 +3,16 @@ package org.arkham;
 import java.awt.image.BufferedImage;
 
 public class ImageConverterGamma implements ImageConverter {
+    private final boolean verbose;
+
+    ImageConverterGamma() {
+        this(false);
+    }
+
+    ImageConverterGamma(final boolean verbose) {
+        this.verbose = verbose;
+    }
+
     @Override
     public BufferedImage convert(final BufferedImage img) {
         final int width = img.getWidth();
@@ -17,12 +27,12 @@ public class ImageConverterGamma implements ImageConverter {
                 int p = img.getRGB(x, y);
 
                 // Alpha channel
-                int alpha = (p >> 24) & 0xff;
+                int alpha = p >> 24 & 0xff;
                 max_alpha = Math.max(max_alpha, alpha);
                 min_alpha = Math.min(min_alpha, alpha);
 
-                final int red = (p >> 16) & 0xff;
-                final int green = (p >> 8) & 0xff;
+                final int red = p >> 16 & 0xff;
+                final int green = p >> 8 & 0xff;
                 final int blue = p & 0xff;
 
                 // final float alpha_p = convert2Linear(alpha);
@@ -52,7 +62,7 @@ public class ImageConverterGamma implements ImageConverter {
                 alpha = ALPHA;
 
                 // set new RGB
-                p = (alpha << 24) | (r << 16) | (g << 8) | (b << 0);
+                p = alpha << 24 | r << 16 | g << 8 | b << 0;
                 img.setRGB(x, y, p);
             }
         }
