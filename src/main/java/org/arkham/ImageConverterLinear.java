@@ -56,7 +56,7 @@ public class ImageConverterLinear implements ImageConverter {
                 // final int r = convert2RGB(red_p);
                 // Augmente les niveaux GB du niveau de rouge
                 final int r = 0;
-                final int g = convert2RGB(green_p + lr);
+                final int g = convert2RGB(green_p - lr);
                 // final int g = convert2RGB(green_p);
                 final int b = convert2RGB(blue_p + lr);
                 alpha = ALPHA;
