@@ -1,4 +1,47 @@
-# looping
+# Purpose : how see a dog
+
+## Example :
+
+What a human see
+![Human vision](examples/chien1.png "Human vision")
+
+What a dog could see
+![Dog vision](examples/chien2.png "Dog vision")
+
+## Installation
+
+Get the release at : https://github.com/fuckingdarkknight/looping/releases/download/1.0.0/looping
+
+**Open a console**
+```shell
+curl -LO https://github.com/fuckingdarkknight/looping/releases/download/1.0.0/looping
+chmod u+x looping
+
+./looping
+
+Missing required parameter: '<filename>'
+Usage: looping [-hvV] [-l=<transformation>] <filename>
+      <filename>   Filename to convert
+  -h, --help       Show this help message and exit.
+  -l, --linear=<transformation>
+
+  -v, --verbose
+  -V, --version    Print version information and exit.
+```
+
+**Only jpeg and png format are supported**
+Usage example:
+```shell
+./looping pere-noel-1.jpg
+```
+
+What a human see
+![Human vision](examples/pere-noel-1.jpg "Human vision")
+
+What a dog could see
+![Dog vision](examples/pere-noel-2.jpg "Dog vision")
+
+# framework
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 

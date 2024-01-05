@@ -9,7 +9,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-@Command(name = "Dog", mixinStandardHelpOptions = true)
+@Command(name = "looping", mixinStandardHelpOptions = true)
 public class Convert implements Runnable {
     @Parameters(paramLabel = "<filename>", description = "Filename to convert")
     String filename;
