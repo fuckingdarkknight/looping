@@ -13,14 +13,13 @@ import picocli.CommandLine.Parameters;
 public class Convert implements Runnable {
     @Parameters(paramLabel = "<filename>", description = "Filename to convert")
     String filename;
-    @Option(names = { "-l", "--linear" }, required = false, defaultValue = "nonlinear")
+    @Option(names = { "-l", "--linear" }, required = false, defaultValue = "gamma")
     String transformation;
     @Option(names = { "-v", "--verbose" }, required = false, defaultValue = "false")
     boolean verbose;
 
     @Override
     public void run() {
-        // System.out.printf("Hello %s, go go commando!\n", filename);
         try {
             final Path img = Paths.get(filename);
             final String ext = ImageUtility.getExtension(img);
@@ -29,10 +28,10 @@ public class Convert implements Runnable {
             final BufferedImage bi = reader.read(img);
 
             ImageConverter ic = null;
-            if ("nonlinear".equals(transformation)) {
-                ic = new ImageConverterLinear();
-            } else {
+            if ("gamma".equals(transformation)) {
                 ic = new ImageConverterGamma();
+            } else {
+                ic = new ImageConverterLinear();
             }
 
             final BufferedImage nbi = ic.convert(bi);
@@ -40,8 +39,7 @@ public class Convert implements Runnable {
             final ImageWriter writer = new ImageWriter();
             writer.write(ext, nbi, ImageUtility.changeExtension(img, ext));
         } catch (final IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.printf("Exception %s, please call Alex!\n", e.toString());
         }
     }
 }
